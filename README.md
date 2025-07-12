@@ -1,0 +1,2 @@
+# NinjaLegendsScript
+Autofarm + Teleports
