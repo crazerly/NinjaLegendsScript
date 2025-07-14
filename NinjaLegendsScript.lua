@@ -23,7 +23,7 @@ local farmingKOTH = false
 local collectingCurrency = false
 local collectingChests = false
 
-local selectedBoss = 1 -- index for bosses[]
+local selectedBoss = 1
 
 -- locations for islands
 local islands = {
@@ -214,7 +214,7 @@ local function createDropdown(parent, text, options, yOffset)
     local function toggleDropdown()
         expanded = not expanded
         dropdownFrame.Visible = expanded
-        local height = math.min(#options, 5) * 30  -- Show max 5 items without scrolling
+        local height = math.min(#options, 5) * 30
         dropdownFrame.Size = expanded and UDim2.new(0, 200, 0, height) or UDim2.new(0, 200, 0, 0)
     end
 
@@ -330,14 +330,14 @@ end)
 showPage("Farming")
 
 -- sort weapons/belts/ranks by price
-for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do -- loop through the folder
+for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do
     for _, weapon in pairs(island:GetChildren()) do
         table.insert(weaponPrices, weapon.price.Value)
     end
 end
 table.sort(weaponPrices)
 for _, weaponPrice in pairs(weaponPrices) do
-    for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do -- loop through the folder
+    for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do
         for _, weapon in pairs(island:GetChildren()) do
             if weapon.price.Value == weaponPrice then
                 table.insert(weapons, weapon.Name)
@@ -345,14 +345,14 @@ for _, weaponPrice in pairs(weaponPrices) do
         end
     end
 end
-for _, island in pairs(replicatedStorage.Belts:GetChildren()) do -- loop through the folder
+for _, island in pairs(replicatedStorage.Belts:GetChildren()) do
     for _, belt in pairs(island:GetChildren()) do
         table.insert(beltPrices, belt.price.Value)
     end
 end
 table.sort(beltPrices)
 for _, beltPrice in pairs(beltPrices) do
-    for _, island in pairs(replicatedStorage.Belts:GetChildren()) do -- loop through the folder
+    for _, island in pairs(replicatedStorage.Belts:GetChildren()) do
         for _, belt in pairs(island:GetChildren()) do
             if belt.price.Value == beltPrice then
                 table.insert(belts, belt.Name)
@@ -401,7 +401,7 @@ function getPlayerRankIndex(ranks)
 end
 
 function getNinjitsuGain()
-    for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do -- loop through the folder
+    for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do
         for _, weapon in pairs(island:GetChildren()) do
             if (tostring(weapon) == tostring(localPlayer.equippedSword.Value)) then
                 return weapon.ninjitsuGain.Value
@@ -413,7 +413,7 @@ function getNinjitsuGain()
 end
 
 function getNinjitsuCapacity()
-    for _, island in pairs(replicatedStorage.Belts:GetChildren()) do -- loop through the folder
+    for _, island in pairs(replicatedStorage.Belts:GetChildren()) do
         for _, belt in pairs(island:GetChildren()) do
             if (tostring(belt) == tostring(localPlayer.equippedBelt.Value)) then
                 return belt.capacity.Value
@@ -425,7 +425,7 @@ function getNinjitsuCapacity()
 end
 
 function getLastBeltName(beltCapacity)
-    for _, island in pairs(replicatedStorage.Belts:GetChildren()) do -- loop through the folder
+    for _, island in pairs(replicatedStorage.Belts:GetChildren()) do
         for _, belt in pairs(island:GetChildren()) do
             if belt.capacity.Value > beltCapacity then
                 return belt.Name
@@ -497,7 +497,7 @@ function farmRank()
                 break
             end
         end
-        for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do -- loop through the folder
+        for _, island in pairs(replicatedStorage.Weapons:GetChildren()) do
             for _, weapon in pairs(island:GetChildren()) do
                 if tostring(weapon.Name) == tostring(weapons[lastWeaponIndex]) then
                     lastWeaponNinjitsuGain = weapon.ninjitsuGain.Value
